@@ -1,45 +1,46 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
-  StyleSheet,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
+  StyleSheet,
+  TextInput,
 } from 'react-native';
+import IconFeather from 'react-native-vector-icons/Feather';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import {Button} from 'native-base';
-import {useSelector, useDispatch} from 'react-redux';
-import {updatePinCreator} from '../../Redux/actions/actionAuth';
 
-const Pin = ({navigation}) => {
-  const dispatch = useDispatch();
-  const idUser = useSelector((state) => state.auth.data.id_user);
-  const createPin = useSelector((state) => state.auth.createPin);
+const PinConfirmation = () => {
   const [pin, setpin] = useState('');
-
-  useEffect(() => {
-    if (createPin) {
-      return navigation.navigate('Home');
-    }
-  }, [createPin]);
-
-  const handleSubmit = () => {
-    dispatch(updatePinCreator(pin, idUser));
-  };
-
   return (
-    <View style={style.body}>
-      <View style={style.compHeader}>
-        <Text style={style.textZwallet}>Zwallet</Text>
+    <View style={style.container}>
+      <View style={style.header}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            flexDirection: 'row',
+            paddingHorizontal: 10,
+          }}>
+          <TouchableOpacity>
+            <IconFeather name="arrow-left" size={30} color="#4D4B57" />
+          </TouchableOpacity>
+          <Text
+            style={{
+              paddingLeft: 20,
+              fontSize: 20,
+              fontWeight: 'bold',
+              color: '#4D4B57',
+            }}>
+            Enter Your Pin
+          </Text>
+        </View>
       </View>
       <View style={style.compPin}>
         <View style={style.pinHeader}>
-          <Text style={{fontSize: 24, color: '#3A3D42', fontWeight: 'bold'}}>
-            Create Security PIN
-          </Text>
           <Text style={style.textDescPin}>
-            Create a PIN that’s contain 6 digits number for security purpose in
-            Zwallet.
+            Enter your 6 digits PIN for confirmation to continue transferring
+            money.
           </Text>
         </View>
         <View style={style.inputUser}>
@@ -59,12 +60,9 @@ const Pin = ({navigation}) => {
           />
         </View>
         <View style={style.compButton}>
-          <Button
-            block
-            style={{backgroundColor: '#6379F4', borderRadius: 15}}
-            onPress={() => handleSubmit()}>
-            <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>
-              Confirm
+          <Button block style={{backgroundColor: '#DADADA', borderRadius: 15}}>
+            <Text style={{color: '#88888F', fontSize: 18, fontWeight: 'bold'}}>
+              Transfer Now
             </Text>
           </Button>
         </View>
@@ -73,22 +71,18 @@ const Pin = ({navigation}) => {
   );
 };
 
-export default Pin;
+export default PinConfirmation;
 
 const style = StyleSheet.create({
-  body: {
+  container: {
     flex: 1,
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#fafcff',
   },
-  compHeader: {
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
+  header: {
+    height: 80,
   },
-  textZwallet: {
-    fontWeight: 'bold',
-    fontSize: 26,
-    color: '#6379F4',
+  content: {
+    flex: 1,
   },
   compPin: {
     flex: 1,
@@ -106,7 +100,7 @@ const style = StyleSheet.create({
     color: 'rgba(58, 61, 66, 0.6)',
     fontSize: 16,
     width: 350,
-    textAlign: 'center',
+    // textAlign: 'center',
     lineHeight: 23,
   },
   inputUser: {

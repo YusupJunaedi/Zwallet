@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -9,8 +9,54 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIon from 'react-native-vector-icons/Ionicons';
 import {Button} from 'native-base';
+import {color} from 'react-native-reanimated';
 
-const Login = () => {
+const Login = ({navigation}) => {
+  const [form, setform] = useState({email: '', password: ''});
+  const [color, setcolor] = useState({
+    active: '#6379F4',
+    noActive: 'rgba(169, 169, 169, 0.6)',
+    invalid: '#FF5B37',
+  });
+  const [colorBtnLogin, setcolorBtnLogin] = useState('#3A3D42');
+  const [colorBtnEye, setcolorBtnEye] = useState('rgba(169, 169, 169, 0.6)');
+  const [showPassword, setshowPassword] = useState(true);
+  const msgInvalid = 'Email or Password Invalid';
+
+  const formEmpty = () => {
+    if (form.email === '' || form.password === '') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const emptyPassword = () => {
+    if (form.password === '') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const emptyEmail = () => {
+    if (form.email === '') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const btnshowPassword = () => {
+    if (colorBtnEye === '#6379F4') {
+      setcolorBtnEye('rgba(169, 169, 169, 0.6)');
+      setshowPassword(true);
+    } else {
+      setcolorBtnEye('#6379F4');
+      setshowPassword(false);
+    }
+  };
+
   return (
     <View style={style.body}>
       <View style={style.compHeader}>
@@ -29,30 +75,60 @@ const Login = () => {
         <View style={style.inputUser}>
           <View style={style.inputEmail}>
             <TextInput
-              style={style.TextInput}
+              value={form.email}
+              style={
+                msgInvalid !== ''
+                  ? style.TextInputinvalid
+                  : emptyEmail()
+                  ? style.TextInput
+                  : style.TextInputActive
+              }
               placeholder="Enter your e-mail"
+              onChangeText={(Text) => setform({...form, email: Text})}
             />
             <Icon
               name="email-outline"
               size={30}
-              color="rgba(169, 169, 169, 0.6)"
+              color={
+                msgInvalid !== ''
+                  ? color.invalid
+                  : form.email === ''
+                  ? color.noActive
+                  : color.active
+              }
               style={{position: 'absolute', top: 10, left: 23}}
             />
           </View>
           <View style={style.inputPassword}>
             <TextInput
-              style={style.TextInput}
+              secureTextEntry={showPassword}
+              value={form.password}
+              style={
+                msgInvalid !== ''
+                  ? style.TextInputinvalid
+                  : emptyPassword()
+                  ? style.TextInput
+                  : style.TextInputActive
+              }
               placeholder="Enter your password"
+              onChangeText={(Text) => setform({...form, password: Text})}
             />
             <IconIon
               name="ios-lock-closed-outline"
               size={30}
-              color="rgba(169, 169, 169, 0.6)"
+              color={
+                msgInvalid !== ''
+                  ? color.invalid
+                  : form.password === ''
+                  ? color.noActive
+                  : color.active
+              }
               style={{position: 'absolute', top: 10, left: 23}}
             />
             <TouchableOpacity
+              onPress={() => btnshowPassword()}
               style={{position: 'absolute', top: 10, right: 23}}>
-              <Icon name="eye-off" size={30} color="rgba(169, 169, 169, 0.6)" />
+              <Icon name="eye-off" size={30} color={colorBtnEye} />
             </TouchableOpacity>
           </View>
         </View>
@@ -66,9 +142,23 @@ const Login = () => {
             Forgot password?
           </Text>
         </View>
+        <View style={{alignItems: 'center', marginTop: 20}}>
+          {msgInvalid !== '' ? (
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: 'bold',
+                color: '#FF5B37',
+              }}>
+              Email or Password Invalid
+            </Text>
+          ) : null}
+        </View>
         <View style={style.compButton}>
-          <Button block style={{backgroundColor: '#DADADA', borderRadius: 15}}>
-            <Text style={{color: '#88888F', fontSize: 18, fontWeight: 'bold'}}>
+          <Button
+            block
+            style={formEmpty() ? style.btnLogin : style.btnLoginActive}>
+            <Text style={formEmpty() ? style.textLogin : style.textLoginActive}>
               Login
             </Text>
           </Button>
@@ -77,7 +167,7 @@ const Login = () => {
           <Text style={{fontSize: 16, color: 'rgba(58, 61, 66, 0.8)'}}>
             Don’t have an account? Let’s
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
             <Text style={{fontSize: 16, color: '#6379F4', fontWeight: 'bold'}}>
               {' '}
               Sign Up
@@ -144,10 +234,28 @@ const style = StyleSheet.create({
     borderBottomWidth: 1.5,
     borderBottomColor: 'rgba(169, 169, 169, 0.6)',
   },
+  TextInputActive: {
+    fontSize: 16,
+    paddingLeft: 40,
+    paddingRight: 20,
+    borderBottomWidth: 1.5,
+    borderBottomColor: '#6379F4',
+  },
+  TextInputinvalid: {
+    fontSize: 16,
+    paddingLeft: 40,
+    paddingRight: 20,
+    borderBottomWidth: 1.5,
+    borderBottomColor: '#FF5B37',
+  },
   compButton: {
     paddingHorizontal: 20,
     marginTop: 70,
   },
+  btnLogin: {backgroundColor: '#DADADA', borderRadius: 15},
+  btnLoginActive: {backgroundColor: '#6379F4', borderRadius: 15},
+  textLogin: {color: '#88888F', fontSize: 18, fontWeight: 'bold'},
+  textLoginActive: {color: 'white', fontSize: 18, fontWeight: 'bold'},
   signUp: {
     flexDirection: 'row',
     marginTop: 30,

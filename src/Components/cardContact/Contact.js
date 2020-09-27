@@ -3,57 +3,53 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
 
-const CardHistory = () => {
+const Contact = () => {
   return (
     <View>
       <View style={{padding: 15}}>
-        <Text style={{fontSize: 16, color: '#7A7886'}}>This Week</Text>
+        <Text style={{fontSize: 18, color: '#514F5B', fontWeight: 'bold'}}>
+          Quick Access
+        </Text>
       </View>
-      <View style={style.cardHistori}>
-        <View>
+      <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+        <View style={style.cardQuick}>
           <Image
             source={require('../../Assets/image/hm1.jpg')}
             style={{width: 52, height: 52, borderRadius: 10}}
           />
-        </View>
-        <View style={{flex: 1, paddingHorizontal: 10}}>
-          <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Samuel Suhi
+          <Text style={{fontSize: 16, fontWeight: 'bold', color: '#4D4B57'}}>
+            Doddy
           </Text>
-          <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            Transfer
-          </Text>
+          <Text style={{fontSize: 13, color: '#7A7886'}}>-9994</Text>
         </View>
-        <View style={{flex: 1, alignItems: 'flex-end'}}>
-          <Text style={{color: '#1EC15F', fontSize: 18, fontWeight: 'bold'}}>
-            +Rp. 50.000
-          </Text>
-        </View>
-      </View>
-      <View style={style.cardHistori}>
-        <View style={{}}>
+        <View style={style.cardQuick}>
           <Image
-            source={require('../../Assets/image/hm2.jpg')}
+            source={require('../../Assets/image/hm1.jpg')}
             style={{width: 52, height: 52, borderRadius: 10}}
           />
+          <Text style={{fontSize: 16, fontWeight: 'bold', color: '#4D4B57'}}>
+            Doddy
+          </Text>
+          <Text style={{fontSize: 13, color: '#7A7886'}}>-9994</Text>
         </View>
-        <View style={{flex: 1, paddingHorizontal: 10}}>
-          <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Nawirudin
+        <View style={style.cardQuick}>
+          <Image
+            source={require('../../Assets/image/hm1.jpg')}
+            style={{width: 52, height: 52, borderRadius: 10}}
+          />
+          <Text style={{fontSize: 16, fontWeight: 'bold', color: '#4D4B57'}}>
+            Doddy
           </Text>
-          <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            Subscription
-          </Text>
-        </View>
-        <View style={{flex: 1, alignItems: 'flex-end'}}>
-          <Text style={{color: '#FF5B37', fontSize: 18, fontWeight: 'bold'}}>
-            -Rp. 49.000
-          </Text>
+          <Text style={{fontSize: 13, color: '#7A7886'}}>-9994</Text>
         </View>
       </View>
-
       <View style={{padding: 15}}>
-        <Text style={{fontSize: 16, color: '#7A7886'}}>This Month</Text>
+        <Text style={{fontSize: 18, color: '#514F5B', fontWeight: 'bold'}}>
+          Contacts
+        </Text>
+        <Text style={{fontSize: 14, color: '#8F8F8F', marginTop: 10}}>
+          17 Contact Founds
+        </Text>
       </View>
       <View style={style.cardHistori}>
         <View>
@@ -67,75 +63,63 @@ const CardHistory = () => {
             Samuel Suhi
           </Text>
           <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            Transfer
-          </Text>
-        </View>
-        <View style={{flex: 1, alignItems: 'flex-end'}}>
-          <Text style={{color: '#1EC15F', fontSize: 18, fontWeight: 'bold'}}>
-            +Rp. 50.000
+            +62 813-8492-9994
           </Text>
         </View>
       </View>
       <View style={style.cardHistori}>
-        <View style={{}}>
+        <View>
           <Image
-            source={require('../../Assets/image/hm2.jpg')}
+            source={require('../../Assets/image/hm1.jpg')}
             style={{width: 52, height: 52, borderRadius: 10}}
           />
         </View>
         <View style={{flex: 1, paddingHorizontal: 10}}>
           <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Nawirudin
+            Samuel Suhi
           </Text>
           <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            Subscription
-          </Text>
-        </View>
-        <View style={{flex: 1, alignItems: 'flex-end'}}>
-          <Text style={{color: '#FF5B37', fontSize: 18, fontWeight: 'bold'}}>
-            -Rp. 49.000
+            +62 813-8492-9994
           </Text>
         </View>
       </View>
       <View style={style.cardHistori}>
-        <View style={{}}>
+        <View>
           <Image
-            source={require('../../Assets/image/hm3.jpg')}
+            source={require('../../Assets/image/hm1.jpg')}
             style={{width: 52, height: 52, borderRadius: 10}}
           />
         </View>
         <View style={{flex: 1, paddingHorizontal: 10}}>
           <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Wildan Dhilya
+            Samuel Suhi
           </Text>
           <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            Transfer
-          </Text>
-        </View>
-        <View style={{flex: 1, alignItems: 'flex-end'}}>
-          <Text style={{color: '#1EC15F', fontSize: 18, fontWeight: 'bold'}}>
-            +Rp. 165.000
+            +62 813-8492-9994
           </Text>
         </View>
       </View>
-      <View style={style.btnGroup}>
-        <Button style={style.btnArrow}>
-          <IconFeather name="arrow-up" size={30} color="#FF5B37" />
-        </Button>
-        <Button style={style.btnArrow}>
-          <IconFeather name="arrow-up" size={30} color="#1EC15F" />
-        </Button>
-        <Button style={style.btnFilter}>
-          <Text style={{color: '#6379F4', fontSize: 18, fontWeight: 'bold'}}>
-            Filter by Date
+      <View style={style.cardHistori}>
+        <View>
+          <Image
+            source={require('../../Assets/image/hm1.jpg')}
+            style={{width: 52, height: 52, borderRadius: 10}}
+          />
+        </View>
+        <View style={{flex: 1, paddingHorizontal: 10}}>
+          <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
+            Samuel Suhi
           </Text>
-        </Button>
+          <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
+            +62 813-8492-9994
+          </Text>
+        </View>
       </View>
     </View>
   );
 };
 
-export default CardHistory;
+export default Contact;
 
 const style = StyleSheet.create({
   cardHistori: {
@@ -167,5 +151,12 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
+  },
+  cardQuick: {
+    width: 96,
+    height: 146,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

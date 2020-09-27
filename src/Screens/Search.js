@@ -4,15 +4,14 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  StatusBar,
+  TextInput,
 } from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
-import CardHistory from '../Components/cardHistory/CardHistory';
+import Contact from '../Components/cardContact/Contact';
 
-const History = () => {
+const Search = () => {
   return (
     <View style={style.container}>
-      <StatusBar barStyle="default" backgroundColor="#6379F4" />
       <View style={style.header}>
         <View
           style={{
@@ -22,27 +21,39 @@ const History = () => {
             paddingHorizontal: 10,
           }}>
           <TouchableOpacity>
-            <IconFeather name="arrow-left" size={30} color="white" />
+            <IconFeather name="arrow-left" size={30} color="#4D4B57" />
           </TouchableOpacity>
           <Text
             style={{
               paddingLeft: 20,
               fontSize: 20,
               fontWeight: 'bold',
-              color: 'white',
+              color: '#4D4B57',
             }}>
-            History
+            Find Receiver
           </Text>
         </View>
       </View>
+      <View style={{paddingHorizontal: 20, position: 'relative'}}>
+        <TextInput
+          placeholder="Search receiver here"
+          style={style.inputSearch}
+        />
+        <IconFeather
+          name="search"
+          size={25}
+          color="#A9A9A9"
+          style={{position: 'absolute', top: 10, left: 28}}
+        />
+      </View>
       <View style={style.content}>
-        <CardHistory />
+        <Contact />
       </View>
     </View>
   );
 };
 
-export default History;
+export default Search;
 
 const style = StyleSheet.create({
   container: {
@@ -51,11 +62,15 @@ const style = StyleSheet.create({
   },
   header: {
     height: 80,
-    backgroundColor: '#6379F4',
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
   },
   content: {
     flex: 1,
+  },
+  inputSearch: {
+    backgroundColor: 'rgba(58, 61, 66, 0.1)',
+    borderRadius: 10,
+    paddingLeft: 40,
+    paddingRight: 20,
+    fontSize: 16,
   },
 });
