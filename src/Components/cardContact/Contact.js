@@ -1,11 +1,67 @@
 import {Button} from 'native-base';
-import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
+import {useSelector, useDispatch} from 'react-redux';
+import {getDataContactCreator} from '../../Redux/actions/actionContact';
+import {addDataTransferCreator} from '../../Redux/actions/actionTransfer';
 
-const Contact = () => {
+const Contact = ({navigation}) => {
+  const dispatch = useDispatch();
+  const contact = useSelector((state) => state.contact.data);
+  const id_user = useSelector((state) => state.auth.data.id_user);
+  console.log(contact);
+
+  useEffect(() => {
+    dispatch(getDataContactCreator(id_user));
+  }, []);
+
+  const addDataTranser = (id, name, image, no_hp) => {
+    const data = {
+      id_contact: id,
+      name: name,
+      image: image,
+      no_hp: no_hp,
+    };
+
+    dispatch(addDataTransferCreator(data));
+    navigation.navigate('InputAmount');
+  };
+
+  const renderItem = ({item}) => (
+    <View style={style.cardHistori}>
+      <View>
+        <TouchableOpacity
+          onPress={() =>
+            addDataTranser(item.id_contact, item.name, item.image, item.no_hp)
+          }>
+          <Image
+            source={{uri: item.image}}
+            style={{width: 52, height: 52, borderRadius: 10}}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={{flex: 1, paddingHorizontal: 10}}>
+        <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
+          {item.name}
+        </Text>
+        <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
+          {item.no_hp}
+        </Text>
+      </View>
+    </View>
+  );
+
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={{padding: 15}}>
         <Text style={{fontSize: 18, color: '#514F5B', fontWeight: 'bold'}}>
           Quick Access
@@ -51,70 +107,13 @@ const Contact = () => {
           17 Contact Founds
         </Text>
       </View>
-      <View style={style.cardHistori}>
-        <View>
-          <Image
-            source={require('../../Assets/image/hm1.jpg')}
-            style={{width: 52, height: 52, borderRadius: 10}}
-          />
-        </View>
-        <View style={{flex: 1, paddingHorizontal: 10}}>
-          <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Samuel Suhi
-          </Text>
-          <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            +62 813-8492-9994
-          </Text>
-        </View>
-      </View>
-      <View style={style.cardHistori}>
-        <View>
-          <Image
-            source={require('../../Assets/image/hm1.jpg')}
-            style={{width: 52, height: 52, borderRadius: 10}}
-          />
-        </View>
-        <View style={{flex: 1, paddingHorizontal: 10}}>
-          <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Samuel Suhi
-          </Text>
-          <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            +62 813-8492-9994
-          </Text>
-        </View>
-      </View>
-      <View style={style.cardHistori}>
-        <View>
-          <Image
-            source={require('../../Assets/image/hm1.jpg')}
-            style={{width: 52, height: 52, borderRadius: 10}}
-          />
-        </View>
-        <View style={{flex: 1, paddingHorizontal: 10}}>
-          <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Samuel Suhi
-          </Text>
-          <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            +62 813-8492-9994
-          </Text>
-        </View>
-      </View>
-      <View style={style.cardHistori}>
-        <View>
-          <Image
-            source={require('../../Assets/image/hm1.jpg')}
-            style={{width: 52, height: 52, borderRadius: 10}}
-          />
-        </View>
-        <View style={{flex: 1, paddingHorizontal: 10}}>
-          <Text style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-            Samuel Suhi
-          </Text>
-          <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-            +62 813-8492-9994
-          </Text>
-        </View>
-      </View>
+      <SafeAreaView style={{flex: 1}}>
+        <FlatList
+          data={contact}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id_contact}
+        />
+      </SafeAreaView>
     </View>
   );
 };

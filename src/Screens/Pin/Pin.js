@@ -19,7 +19,7 @@ const Pin = ({navigation}) => {
 
   useEffect(() => {
     if (createPin) {
-      return navigation.navigate('Home');
+      return navigation.navigate('PinSuccess');
     }
   }, [createPin]);
 

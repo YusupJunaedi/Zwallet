@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const CardSaldo = () => {
+const CardSaldo = ({dataUser}) => {
   return (
     <View style={style.cardPrice}>
       <Text style={{color: `#D0D0D0`, fontSize: 14}}>Balance</Text>
@@ -12,9 +12,9 @@ const CardSaldo = () => {
           fontWeight: 'bold',
           marginVertical: 10,
         }}>
-        Rp. 120.000
+        Rp. {dataUser.amount}
       </Text>
-      <Text style={{color: '#DFDCDC', fontSize: 14}}>+62 857 9507 0707</Text>
+      <Text style={{color: '#DFDCDC', fontSize: 14}}> {dataUser.no_hp} </Text>
     </View>
   );
 };

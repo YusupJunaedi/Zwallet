@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -10,8 +10,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIon from 'react-native-vector-icons/Ionicons';
 import {Button} from 'native-base';
 import {color} from 'react-native-reanimated';
+import {useDispatch, useSelector} from 'react-redux';
+import {authLoginCreator} from '../../Redux/actions/actionAuth';
 
 const Login = ({navigation}) => {
+  const dispatch = useDispatch();
   const [form, setform] = useState({email: '', password: ''});
   const [color, setcolor] = useState({
     active: '#6379F4',
@@ -21,7 +24,16 @@ const Login = ({navigation}) => {
   const [colorBtnLogin, setcolorBtnLogin] = useState('#3A3D42');
   const [colorBtnEye, setcolorBtnEye] = useState('rgba(169, 169, 169, 0.6)');
   const [showPassword, setshowPassword] = useState(true);
-  const msgInvalid = 'Email or Password Invalid';
+  // const msgInvalid = 'Email or Password Invalid';
+
+  const msgInvalid = useSelector((state) => state.auth.msgInvalid);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
+  useEffect(() => {
+    if (isLogin) {
+      return navigation.navigate('HomeApp');
+    }
+  }, [isLogin]);
 
   const formEmpty = () => {
     if (form.email === '' || form.password === '') {
@@ -55,6 +67,10 @@ const Login = ({navigation}) => {
       setcolorBtnEye('#6379F4');
       setshowPassword(false);
     }
+  };
+
+  const handleSubmit = () => {
+    dispatch(authLoginCreator(form.email, form.password));
   };
 
   return (
@@ -157,7 +173,8 @@ const Login = ({navigation}) => {
         <View style={style.compButton}>
           <Button
             block
-            style={formEmpty() ? style.btnLogin : style.btnLoginActive}>
+            style={formEmpty() ? style.btnLogin : style.btnLoginActive}
+            onPress={() => handleSubmit()}>
             <Text style={formEmpty() ? style.textLogin : style.textLoginActive}>
               Login
             </Text>

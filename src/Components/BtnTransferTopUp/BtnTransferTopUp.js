@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
 import {Button} from 'native-base';
 
-const BtnTransferTopUp = () => {
+const BtnTransferTopUp = ({navigation}) => {
   return (
     <View style={style.cardActions}>
       <View style={style.buttonCard}>
@@ -14,7 +14,8 @@ const BtnTransferTopUp = () => {
             marginRight: 10,
             borderRadius: 10,
             backgroundColor: '#E5E8ED',
-          }}>
+          }}
+          onPress={() => navigation.navigate('Search')}>
           <IconFeather name="arrow-up" size={35} color="#608DE2" />
           <Text style={style.textButton}>Transfer</Text>
         </Button>

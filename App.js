@@ -16,6 +16,8 @@ import History from './src/Screens/History';
 import Search from './src/Screens/Search';
 import InputAmount from './src/Screens/InputAmount';
 import PinConfirmation from './src/Screens/Pin/PinConfirmation';
+import splashScreen from './src/Screens/splashScreen';
+import TransferDetail from './src/Screens/TransferDetail';
 
 const Stack = createStackNavigator();
 
@@ -26,10 +28,16 @@ const App = () => {
       <NavigationContainer>
         <Provider store={store}>
           <Stack.Navigator headerMode="none">
+            <Stack.Screen name="Splash" component={splashScreen} />
+            <Stack.Screen name="HomeApp" component={Home} />
+            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen name="TransferDetail" component={TransferDetail} />
+            <Stack.Screen name="PinConfirmation" component={PinConfirmation} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Pin" component={Pin} />
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="PinSuccess" component={PinSuccess} />
+            <Stack.Screen name="InputAmount" component={InputAmount} />
           </Stack.Navigator>
         </Provider>
       </NavigationContainer>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,8 +10,25 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconFeather from 'react-native-vector-icons/Feather';
+import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {addDataTransferAmountNotesCreator} from '../Redux/actions/actionTransfer';
 
-const InputAmount = () => {
+const InputAmount = ({navigation}) => {
+  const dispatch = useDispatch();
+  const dataTransfer = useSelector((state) => state.dataTransfer);
+  const [form, setform] = useState({amount: null, note: ''});
+
+  const handleSubmit = () => {
+    const data = {
+      amount: form.amount,
+      note: form.note,
+    };
+
+    dispatch(addDataTransferAmountNotesCreator(data));
+    navigation.navigate('PinConfirmation');
+  };
+
   return (
     <View style={style.container}>
       <StatusBar barStyle="default" backgroundColor="#6379F4" />
@@ -21,7 +38,7 @@ const InputAmount = () => {
             flexDirection: 'row',
             paddingHorizontal: 20,
           }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Search')}>
             <IconFeather name="arrow-left" size={30} color="white" />
           </TouchableOpacity>
           <Text style={style.textHistory}>Transfer</Text>
@@ -31,7 +48,7 @@ const InputAmount = () => {
             <View style={style.cardContact}>
               <View>
                 <Image
-                  source={require('../Assets/image/hm1.jpg')}
+                  source={{uri: dataTransfer.image}}
                   style={{width: 52, height: 52, borderRadius: 10}}
                 />
               </View>
@@ -39,10 +56,10 @@ const InputAmount = () => {
               <View style={{flex: 1, paddingHorizontal: 10}}>
                 <Text
                   style={{color: '#4D4B57', fontSize: 16, fontWeight: 'bold'}}>
-                  Samuel Suhi
+                  {dataTransfer.name}
                 </Text>
                 <Text style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-                  +62 813-8492-9994
+                  {dataTransfer.no_hp}
                 </Text>
               </View>
             </View>
@@ -55,6 +72,8 @@ const InputAmount = () => {
             keyboardType="numeric"
             placeholder="0.00"
             style={style.inputAmount}
+            value={form.amount}
+            onChangeText={(Text) => setform({...form, amount: Text})}
           />
           <Text
             style={{
@@ -68,7 +87,13 @@ const InputAmount = () => {
         </View>
         <View
           style={{paddingHorizontal: 20, marginTop: 50, position: 'relative'}}>
-          <TextInput placeholder="Add some notes" style={style.inputNotes} />
+          <TextInput
+            placeholder="Add some notes"
+            style={style.inputNotes}
+            value={form.note}
+            onChangeText={(Text) => setform({...form, note: Text})}
+            onSubmitEditing={handleSubmit}
+          />
           <Icon
             name="pencil-outline"
             size={25}

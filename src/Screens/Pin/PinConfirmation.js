@@ -1,17 +1,44 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  TextInput,
-} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import {Button} from 'native-base';
+import {useSelector, useDispatch} from 'react-redux';
+import {addHistoryCreator} from '../../Redux/actions/actionHistory';
 
-const PinConfirmation = () => {
+const PinConfirmation = ({navigation}) => {
+  const dispatch = useDispatch();
+  const pinUser = useSelector((state) => state.auth.data.pin);
+  const dataTransfer = useSelector((state) => state.dataTransfer);
+  const dataUser = useSelector((state) => state.auth.data);
+  const balanceLeft = parseInt(dataUser.amount) - parseInt(dataTransfer.amount);
+  console.log(balanceLeft);
   const [pin, setpin] = useState('');
+
+  const handleSubmit = () => {
+    if (pin == pinUser) {
+      const data = {
+        userIdTransfer: dataUser.id_user,
+        userIdSubscription: dataTransfer.id_contact,
+        amount: parseInt(dataTransfer.amount),
+        balanceLeft: balanceLeft,
+      };
+      console.log(data);
+      dispatch(addHistoryCreator(data));
+      navigation.navigate('TransferDetail');
+    } else {
+      alertPinFailed();
+    }
+  };
+
+  const alertPinFailed = () =>
+    Alert.alert(
+      'Warning!',
+      'wrong pin number',
+      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+      {cancelable: false},
+    );
+
   return (
     <View style={style.container}>
       <View style={style.header}>
@@ -60,8 +87,11 @@ const PinConfirmation = () => {
           />
         </View>
         <View style={style.compButton}>
-          <Button block style={{backgroundColor: '#DADADA', borderRadius: 15}}>
-            <Text style={{color: '#88888F', fontSize: 18, fontWeight: 'bold'}}>
+          <Button
+            block
+            style={{backgroundColor: '#6379F4', borderRadius: 15}}
+            onPress={handleSubmit}>
+            <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>
               Transfer Now
             </Text>
           </Button>

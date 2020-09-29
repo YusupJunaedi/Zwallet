@@ -8,8 +8,17 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button} from 'native-base';
+import {useDispatch} from 'react-redux';
+import {logoutCreator} from '../../Redux/actions/actionAuth';
 
-const PinSuccess = () => {
+const PinSuccess = ({navigation}) => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    dispatch(logoutCreator());
+    navigation.navigate('Login');
+  };
+
   return (
     <View style={style.body}>
       <View style={style.compHeader}>
@@ -42,7 +51,8 @@ const PinSuccess = () => {
           <View style={style.compButton}>
             <Button
               block
-              style={{backgroundColor: '#6379F4', borderRadius: 15}}>
+              style={{backgroundColor: '#6379F4', borderRadius: 15}}
+              onPress={() => handleSubmit()}>
               <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>
                 Login Now
               </Text>

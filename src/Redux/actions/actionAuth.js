@@ -1,23 +1,23 @@
 import {authLogin, authRegister, updatePin} from '../../utils/http';
 import actionType from './actionType';
 
-export const authLoginCreator = (name, password) => {
+export const authLoginCreator = (email, password) => {
   return {
     type: actionType.authLogin,
-    payload: authLogin(name, password),
+    payload: authLogin(email, password),
   };
 };
 
 export const authRegisterCreator = (name, email, password) => {
   return {
-    type: actionType.authLogin,
+    type: actionType.authRegister,
     payload: authRegister(name, email, password),
   };
 };
 
 export const logoutCreator = () => {
   return {
-    type: actionType.logout,
+    type: actionType.authLogout,
   };
 };
 

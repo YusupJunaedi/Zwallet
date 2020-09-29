@@ -5,11 +5,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
 import Contact from '../Components/cardContact/Contact';
 
-const Search = () => {
+const Search = ({navigation}) => {
   return (
     <View style={style.container}>
       <View style={style.header}>
@@ -20,7 +21,7 @@ const Search = () => {
             flexDirection: 'row',
             paddingHorizontal: 10,
           }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('HomeApp')}>
             <IconFeather name="arrow-left" size={30} color="#4D4B57" />
           </TouchableOpacity>
           <Text
@@ -47,7 +48,7 @@ const Search = () => {
         />
       </View>
       <View style={style.content}>
-        <Contact />
+        <Contact navigation={navigation} />
       </View>
     </View>
   );

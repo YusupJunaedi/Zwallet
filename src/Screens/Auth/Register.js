@@ -30,13 +30,13 @@ const reviewSchema = yup.object({
 
 const Register = ({navigation}) => {
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.auth.isLogin);
+  const createRegister = useSelector((state) => state.auth.createUser);
 
   useEffect(() => {
-    if (isLogin) {
+    if (createRegister) {
       return navigation.navigate('Pin');
     }
-  }, [isLogin]);
+  }, [createRegister]);
 
   return (
     <View style={style.body}>
@@ -56,7 +56,6 @@ const Register = ({navigation}) => {
           initialValues={{username: '', email: '', password: ''}}
           validationSchema={reviewSchema}
           onSubmit={(values) => {
-            console.log(values);
             dispatch(
               authRegisterCreator(
                 values.username,

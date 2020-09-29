@@ -11,21 +11,24 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnTransferTopUp from '../Components/BtnTransferTopUp/BtnTransferTopUp';
 import CardHistoryHome from '../Components/cardHistory/CardHistoryHome';
 import CardSaldo from '../Components/cardSaldo/CardSaldo';
+import {useSelector, useDispatch} from 'react-redux';
 
-const Home = () => {
+const Home = ({navigation}) => {
+  const user = useSelector((state) => state.auth.data);
+
   return (
     <View style={style.container}>
       <View style={style.profile}>
         <View style={style.imgProfile}>
           <Image
-            source={require('../Assets/image/hm6.jpg')}
+            source={{uri: user.image}}
             style={{width: 52, height: 52, borderRadius: 10}}
           />
         </View>
         <View style={{flexWrap: 'wrap'}}>
           <Text style={{fontSize: 18}}>Hello</Text>
           <Text style={{fontSize: 18, fontWeight: 'bold'}}>
-            Robert Chandler
+            {user.username}
           </Text>
         </View>
         <View style={{flex: 1, alignItems: 'flex-end', padding: 20}}>
@@ -33,8 +36,8 @@ const Home = () => {
         </View>
       </View>
       <View style={{paddingHorizontal: 20}}>
-        <CardSaldo />
-        <BtnTransferTopUp />
+        <CardSaldo dataUser={user} />
+        <BtnTransferTopUp navigation={navigation} />
         <View style={{flexDirection: 'row'}}>
           <View style={{flex: 1}}>
             <Text style={{color: '#514F5B', fontSize: 18, fontWeight: 'bold'}}>
