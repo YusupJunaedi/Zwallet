@@ -1,5 +1,12 @@
-import {authLogin, authRegister, updatePin} from '../../utils/http';
+import {authLogin, authRegister, updatePin, updateImg} from '../../utils/http';
 import actionType from './actionType';
+
+export const updateImgCreator = (id, resource) => {
+  return {
+    type: actionType.updateImg,
+    payload: updateImg(id, resource),
+  };
+};
 
 export const authLoginCreator = (email, password) => {
   return {
@@ -8,16 +15,16 @@ export const authLoginCreator = (email, password) => {
   };
 };
 
+export const authLogoutCreator = () => {
+  return {
+    type: actionType.authLogout,
+  };
+};
+
 export const authRegisterCreator = (name, email, password) => {
   return {
     type: actionType.authRegister,
     payload: authRegister(name, email, password),
-  };
-};
-
-export const logoutCreator = () => {
-  return {
-    type: actionType.authLogout,
   };
 };
 

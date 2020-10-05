@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,8 +9,14 @@ import {
 } from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
 import Contact from '../Components/cardContact/Contact';
+import {useDispatch, useSelector} from 'react-redux';
+import {searchDataContactCreator} from '../Redux/actions/actionContact';
 
 const Search = ({navigation}) => {
+  const dispatch = useDispatch();
+  const id_user = useSelector((state) => state.auth.data.id_user);
+  const [search, setSearch] = useState('');
+  // console.log(id_user);
   return (
     <View style={style.container}>
       <View style={style.header}>
@@ -39,6 +45,11 @@ const Search = ({navigation}) => {
         <TextInput
           placeholder="Search receiver here"
           style={style.inputSearch}
+          value={search}
+          onChangeText={(Text) => setSearch(Text)}
+          onSubmitEditing={() =>
+            dispatch(searchDataContactCreator(search, id_user))
+          }
         />
         <IconFeather
           name="search"

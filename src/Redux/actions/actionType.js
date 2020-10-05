@@ -1,5 +1,6 @@
 const actionType = {
   authLogin: 'AUTH_LOGIN',
+  authLogout: 'AUTH_LOGOUT',
   authRegister: 'AUTH_REGISTER',
   authLogout: 'AUTH_LOGOUT',
   updatePin: 'UPDATE_PIN',
@@ -9,6 +10,8 @@ const actionType = {
   adddDataTransferAmountNote: 'ADD_DATA_TRANSFER_AMOUNT_NOTE',
   addHistory: 'ADD_HISTORY',
   getDataHistory: 'GET_DATA_HISTORY',
+  getQuickContact: 'GET_QUICK_CONTACT',
+  updateImg: 'UPDATE_IMAGE',
 };
 
 export default actionType;

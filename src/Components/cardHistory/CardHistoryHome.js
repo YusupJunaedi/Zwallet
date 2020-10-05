@@ -1,22 +1,18 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {getDataHistoryCreator} from '../../Redux/actions/actionHistory';
+import colorStyle from '../../styles/colorStyles';
 
 const CardHistoryHome = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.data);
   const history = useSelector((state) => state.history.historyHome);
 
-  console.log(history.length);
-
-  useEffect(() => {
-    dispatch(getDataHistoryCreator(user.id_user));
-  }, []);
+  // console.log(`isi history => ${history.length}`);
 
   return (
     <View style={{flex: 1}}>
-      {history ? (
+      {history.length !== undefined && history.length !== 0 ? (
         <>
           {history.map((item) => {
             return (
@@ -42,13 +38,15 @@ const CardHistoryHome = () => {
                   </Text>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
+                  {/* color: {item.transaction === 'Transfer' ? colorStyle.success : colorStyle.error}, */}
                   <Text
-                    style={{
-                      color: '#FF5B37',
-                      fontSize: 18,
-                      fontWeight: 'bold',
-                    }}>
-                    -Rp. {item.Amount}
+                    style={
+                      item.transaction === 'Transfer'
+                        ? style.textTransactionPlus
+                        : style.textTransactionMinus
+                    }>
+                    {item.transaction === 'Transfer' ? '+' : '-'}Rp.{' '}
+                    {item.Amount}
                   </Text>
                 </View>
               </View>
@@ -77,5 +75,15 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10,
+  },
+  textTransactionPlus: {
+    color: '#1EC15F',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  textTransactionMinus: {
+    color: '#FF5B37',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

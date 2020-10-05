@@ -18,6 +18,8 @@ import InputAmount from './src/Screens/InputAmount';
 import PinConfirmation from './src/Screens/Pin/PinConfirmation';
 import splashScreen from './src/Screens/splashScreen';
 import TransferDetail from './src/Screens/TransferDetail';
+import Profile from './src/Screens/Profile';
+import ResetPassword from './src/Screens/ResetPassword';
 
 const Stack = createStackNavigator();
 
@@ -29,7 +31,10 @@ const App = () => {
         <Provider store={store}>
           <Stack.Navigator headerMode="none">
             <Stack.Screen name="Splash" component={splashScreen} />
+            <Stack.Screen name="ResetPassword" component={ResetPassword} />
+            <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="HomeApp" component={Home} />
+            <Stack.Screen name="History" component={History} />
             <Stack.Screen name="Search" component={Search} />
             <Stack.Screen name="TransferDetail" component={TransferDetail} />
             <Stack.Screen name="PinConfirmation" component={PinConfirmation} />

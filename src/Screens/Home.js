@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -12,18 +12,26 @@ import BtnTransferTopUp from '../Components/BtnTransferTopUp/BtnTransferTopUp';
 import CardHistoryHome from '../Components/cardHistory/CardHistoryHome';
 import CardSaldo from '../Components/cardSaldo/CardSaldo';
 import {useSelector, useDispatch} from 'react-redux';
+import {getDataHistoryCreator} from '../Redux/actions/actionHistory';
 
 const Home = ({navigation}) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.data);
+
+  useEffect(() => {
+    dispatch(getDataHistoryCreator(user.id_user));
+  }, [user.amount]);
 
   return (
     <View style={style.container}>
       <View style={style.profile}>
         <View style={style.imgProfile}>
-          <Image
-            source={{uri: user.image}}
-            style={{width: 52, height: 52, borderRadius: 10}}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image
+              source={{uri: user.image}}
+              style={{width: 52, height: 52, borderRadius: 10}}
+            />
+          </TouchableOpacity>
         </View>
         <View style={{flexWrap: 'wrap'}}>
           <Text style={{fontSize: 18}}>Hello</Text>
@@ -50,7 +58,7 @@ const Home = ({navigation}) => {
               justifyContent: 'flex-end',
               alignItems: 'flex-end',
             }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('History')}>
               <Text style={{color: '#6379F4', fontSize: 14}}>See all</Text>
             </TouchableOpacity>
           </View>

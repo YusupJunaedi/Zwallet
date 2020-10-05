@@ -8,6 +8,7 @@ const initialState = {
     name: 'Yusup Junaedi',
     no_hp: '085795070707',
     pin: 123456,
+    email: 'yusup.junaedi97@gmail.com',
   },
   createPin: false,
   createUser: false,
@@ -74,10 +75,17 @@ const auth = (state = initialState, {type, payload}) => {
       }
     case actionType.authLogout:
       return {
-        ...state,
-        data: [],
-        createUser: false,
+        data: {
+          amount: 100000,
+          id_user: 1,
+          image: 'http://192.168.43.116:8000/images/user.png',
+          name: 'Yusup Junaedi',
+          no_hp: '085795070707',
+          pin: 123456,
+          email: 'yusup.junaedi97@gmail.com',
+        },
         createPin: false,
+        createUser: false,
         msgInvalid: '',
         isLogin: false,
         isPending: false,
@@ -107,6 +115,23 @@ const auth = (state = initialState, {type, payload}) => {
           createPin: false,
         };
       }
+    case actionType.updateImg + '_PENDING':
+      return {
+        ...state,
+        isPending: true,
+      };
+    case actionType.updateImg + '_REJECTED':
+      return {
+        ...state,
+        isRejected: true,
+        isPending: false,
+      };
+    case actionType.updateImg + '_FULFILLED':
+      console.log(payload);
+      return {
+        ...state,
+      };
+
     case actionType.addHistory + '_PENDING':
       return {
         ...state,

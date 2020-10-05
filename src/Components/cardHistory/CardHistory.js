@@ -5,7 +5,7 @@ import IconFeather from 'react-native-vector-icons/Feather';
 
 const CardHistory = () => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={{padding: 15}}>
         <Text style={{fontSize: 16, color: '#7A7886'}}>This Week</Text>
       </View>
