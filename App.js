@@ -19,7 +19,9 @@ import PinConfirmation from './src/Screens/Pin/PinConfirmation';
 import splashScreen from './src/Screens/splashScreen';
 import TransferDetail from './src/Screens/TransferDetail';
 import Profile from './src/Screens/Profile';
-import ResetPassword from './src/Screens/ResetPassword';
+import AllHistory from './src/Screens/AllHistory';
+import ChangePin from './src/Screens/Pin/ChangePin';
+import ChangePassword from './src/Screens/ChangePassword';
 
 const Stack = createStackNavigator();
 
@@ -30,10 +32,12 @@ const App = () => {
       <NavigationContainer>
         <Provider store={store}>
           <Stack.Navigator headerMode="none">
-            <Stack.Screen name="Splash" component={splashScreen} />
-            <Stack.Screen name="ResetPassword" component={ResetPassword} />
-            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="ChangePin" component={ChangePin} />
+            <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen name="HomeApp" component={Home} />
+            <Stack.Screen name="AllHistory" component={AllHistory} />
+            <Stack.Screen name="Splash" component={splashScreen} />
+            <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="History" component={History} />
             <Stack.Screen name="Search" component={Search} />
             <Stack.Screen name="TransferDetail" component={TransferDetail} />

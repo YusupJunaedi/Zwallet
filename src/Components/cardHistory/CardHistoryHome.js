@@ -34,7 +34,7 @@ const CardHistoryHome = () => {
                   </Text>
                   <Text
                     style={{color: '#7A7886', fontSize: 14, paddingTop: 10}}>
-                    {item.transaction}
+                    Transfer
                   </Text>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end'}}>

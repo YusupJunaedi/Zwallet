@@ -8,7 +8,7 @@ import {changePassword} from '../utils/http';
 
 import * as color from '../styles/colorStyles';
 
-const ResetPassword = ({navigation}) => {
+const ChangePassword = ({navigation}) => {
   const [form, setForm] = useState({
     currentPassword: '',
     newPassword: '',
@@ -46,13 +46,32 @@ const ResetPassword = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerTop}>
-        <Text style={styles.appText}>Zwallet</Text>
+      <View style={styles.header}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            flexDirection: 'row',
+            paddingHorizontal: 10,
+          }}>
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Icon name="arrow-left" size={30} color="#4D4B57" />
+          </TouchableOpacity>
+          <Text
+            style={{
+              paddingLeft: 20,
+              fontSize: 20,
+              fontWeight: 'bold',
+              color: '#4D4B57',
+            }}>
+            Change Password
+          </Text>
+        </View>
       </View>
       <View style={styles.containerBottom}>
-        <Text style={styles.loginText}>Reset Password</Text>
         <Text style={styles.loginInfoText}>
-          Create and confirm your new password so you can login to Zwallet.
+          You must enter your current password and then type your new password
+          twice.
         </Text>
         <Input
           placeholder="Current password"
@@ -96,12 +115,16 @@ const ResetPassword = ({navigation}) => {
   );
 };
 
-export default ResetPassword;
+export default ChangePassword;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.backgroud,
+  },
+  header: {
+    height: 80,
+    backgroundColor: color.white,
   },
   containerTop: {
     flex: 1,
@@ -116,8 +139,6 @@ const styles = StyleSheet.create({
     flex: 4,
     backgroundColor: color.white,
     elevation: 3,
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
     paddingHorizontal: '8%',
     justifyContent: 'space-evenly',
   },
@@ -130,7 +151,7 @@ const styles = StyleSheet.create({
   loginInfoText: {
     color: color.subtitle,
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   input: {
     fontSize: 16,

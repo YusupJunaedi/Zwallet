@@ -89,13 +89,15 @@ const Profile = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonItem}
-          onPress={() => navigation.navigate('ResetPassword')}>
+          onPress={() => navigation.navigate('ChangePassword')}>
           <>
             <Text style={styles.textButton}>Change Password</Text>
             <Icon name="arrow-right" size={25} color={color.subtitle} />
           </>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonItem}>
+        <TouchableOpacity
+          style={styles.buttonItem}
+          onPress={() => navigation.navigate('ChangePin')}>
           <>
             <Text style={styles.textButton}>Change PIN</Text>
             <Icon name="arrow-right" size={25} color={color.subtitle} />

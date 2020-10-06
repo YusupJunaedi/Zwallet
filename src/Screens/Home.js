@@ -58,7 +58,7 @@ const Home = ({navigation}) => {
               justifyContent: 'flex-end',
               alignItems: 'flex-end',
             }}>
-            <TouchableOpacity onPress={() => navigation.navigate('History')}>
+            <TouchableOpacity onPress={() => navigation.navigate('AllHistory')}>
               <Text style={{color: '#6379F4', fontSize: 14}}>See all</Text>
             </TouchableOpacity>
           </View>
