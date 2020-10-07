@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import {Button} from 'native-base';
 import {useSelector, useDispatch} from 'react-redux';
 import {addHistoryCreator} from '../../Redux/actions/actionHistory';
+import PushNotification from 'react-native-push-notification';
+import {showLocalNotification} from '../../Assets/notif/handleNotification';
 
 const PinConfirmation = ({navigation}) => {
   const dispatch = useDispatch();
@@ -12,8 +14,16 @@ const PinConfirmation = ({navigation}) => {
   const dataTransfer = useSelector((state) => state.dataTransfer);
   const dataUser = useSelector((state) => state.auth.data);
   const balanceLeft = parseInt(dataUser.amount) - parseInt(dataTransfer.amount);
-  console.log(balanceLeft);
   const [pin, setpin] = useState('');
+
+  const channelId = 'test-notification';
+
+  useEffect(() => {
+    PushNotification.createChannel({
+      channelId,
+      channelName: 'test notification',
+    });
+  }, []);
 
   const handleSubmit = () => {
     if (pin == pinUser) {
@@ -26,6 +36,11 @@ const PinConfirmation = ({navigation}) => {
       console.log(data);
       dispatch(addHistoryCreator(data));
       navigation.navigate('TransferDetail');
+      showLocalNotification(
+        'New Notification',
+        `Transfer Success To ${dataTransfer.name}`,
+        channelId,
+      );
     } else {
       alertPinFailed();
     }

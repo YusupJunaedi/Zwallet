@@ -7,11 +7,12 @@ import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import {changePassword} from '../../utils/http';
 import {Button} from 'native-base';
 import {useSelector, useDispatch} from 'react-redux';
-import {updatePinCreator} from '../../Redux/actions/actionAuth';
+import {changePinCreator} from '../../Redux/actions/actionAuth';
 
 import * as color from '../../styles/colorStyles';
 
 const ChangePassword = ({navigation}) => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     currentPassword: '',
     newPassword: '',
@@ -38,6 +39,7 @@ const ChangePassword = ({navigation}) => {
       id_user: idUser,
     })
       .then((res) => {
+        dispatch(changePinCreator(res.data.data.pin));
         alertChangePin();
       })
       .catch((err) => setForm({...form, wrongPassword: 'Wrong password!'}));

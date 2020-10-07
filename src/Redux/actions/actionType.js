@@ -12,6 +12,7 @@ const actionType = {
   getDataHistory: 'GET_DATA_HISTORY',
   getQuickContact: 'GET_QUICK_CONTACT',
   updateImg: 'UPDATE_IMAGE',
+  changePin: 'CHANGE_PIN',
 };
 
 export default actionType;

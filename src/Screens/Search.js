@@ -59,7 +59,7 @@ const Search = ({navigation}) => {
         />
       </View>
       <View style={style.content}>
-        <Contact navigation={navigation} />
+        <Contact navigation={navigation} search={search} />
       </View>
     </View>
   );

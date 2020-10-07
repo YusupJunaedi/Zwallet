@@ -18,8 +18,8 @@ const persistedReducer = persistReducer(persistConfig, indexReducer);
 const enhancers = applyMiddleware(rpm, logger);
 
 export default () => {
-  const store = createStore(indexReducer, enhancers);
-  // let store = createStore(persistedReducer, enhancers);
+  // const store = createStore(indexReducer, enhancers);
+  let store = createStore(persistedReducer, enhancers);
   let persistor = persistStore(store);
   return {
     store,

@@ -13,6 +13,7 @@ import IconFeather from 'react-native-vector-icons/Feather';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {addDataTransferAmountNotesCreator} from '../Redux/actions/actionTransfer';
+import * as color from '../styles/colorStyles';
 
 const InputAmount = ({navigation}) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const InputAmount = ({navigation}) => {
     };
 
     dispatch(addDataTransferAmountNotesCreator(data));
-    navigation.navigate('PinConfirmation');
+    navigation.navigate('Confirmation');
   };
 
   return (
@@ -92,7 +93,6 @@ const InputAmount = ({navigation}) => {
             style={style.inputNotes}
             value={form.note}
             onChangeText={(Text) => setform({...form, note: Text})}
-            onSubmitEditing={handleSubmit}
           />
           <Icon
             name="pencil-outline"
@@ -100,6 +100,11 @@ const InputAmount = ({navigation}) => {
             color="rgba(169, 169, 169, 0.6)"
             style={{position: 'absolute', top: 10, left: 20}}
           />
+        </View>
+        <View style={{paddingHorizontal: 20, marginTop: 80}}>
+          <TouchableOpacity onPress={handleSubmit} style={style.buttonLogin}>
+            <Text style={style.buttonLoginText}>Confirm</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -144,5 +149,19 @@ const style = StyleSheet.create({
     borderBottomColor: 'rgba(169, 169, 169, 0.6)',
     paddingRight: 20,
     paddingLeft: 35,
+  },
+  buttonLogin: {
+    width: '100%',
+    alignSelf: 'center',
+    backgroundColor: color.primary,
+    height: 57,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12,
+  },
+  buttonLoginText: {
+    color: color.white,
+    fontSize: 18,
+    fontWeight: '700',
   },
 });

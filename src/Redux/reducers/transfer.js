@@ -2,9 +2,9 @@ import actionType from '../actions/actionType';
 
 const initialState = {
   id_contact: '',
-  name: '',
-  image: '',
-  no_hp: '',
+  name: 'JAka Sembung',
+  image: 'http://192.168.43.116:8000/images/user.png',
+  no_hp: '8787887878',
   amount: '20000',
   note: 'Beli UC FF',
 };

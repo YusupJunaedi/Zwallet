@@ -22,6 +22,7 @@ import Profile from './src/Screens/Profile';
 import AllHistory from './src/Screens/AllHistory';
 import ChangePin from './src/Screens/Pin/ChangePin';
 import ChangePassword from './src/Screens/ChangePassword';
+import Confirmation from './src/Screens/Confirmation';
 
 const Stack = createStackNavigator();
 
@@ -31,23 +32,29 @@ const App = () => {
     <>
       <NavigationContainer>
         <Provider store={store}>
-          <Stack.Navigator headerMode="none">
-            <Stack.Screen name="ChangePin" component={ChangePin} />
-            <Stack.Screen name="ChangePassword" component={ChangePassword} />
-            <Stack.Screen name="HomeApp" component={Home} />
-            <Stack.Screen name="AllHistory" component={AllHistory} />
-            <Stack.Screen name="Splash" component={splashScreen} />
-            <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen name="History" component={History} />
-            <Stack.Screen name="Search" component={Search} />
-            <Stack.Screen name="TransferDetail" component={TransferDetail} />
-            <Stack.Screen name="PinConfirmation" component={PinConfirmation} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Pin" component={Pin} />
-            <Stack.Screen name="PinSuccess" component={PinSuccess} />
-            <Stack.Screen name="InputAmount" component={InputAmount} />
-          </Stack.Navigator>
+          <PersistGate loading={null} persistor={persistor}>
+            <Stack.Navigator headerMode="none">
+              <Stack.Screen name="Splash" component={splashScreen} />
+              <Stack.Screen name="Confirmation" component={Confirmation} />
+              <Stack.Screen name="ChangePin" component={ChangePin} />
+              <Stack.Screen name="ChangePassword" component={ChangePassword} />
+              <Stack.Screen name="HomeApp" component={Home} />
+              <Stack.Screen name="AllHistory" component={AllHistory} />
+              <Stack.Screen name="Profile" component={Profile} />
+              <Stack.Screen name="History" component={History} />
+              <Stack.Screen name="Search" component={Search} />
+              <Stack.Screen name="TransferDetail" component={TransferDetail} />
+              <Stack.Screen
+                name="PinConfirmation"
+                component={PinConfirmation}
+              />
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Register" component={Register} />
+              <Stack.Screen name="Pin" component={Pin} />
+              <Stack.Screen name="PinSuccess" component={PinSuccess} />
+              <Stack.Screen name="InputAmount" component={InputAmount} />
+            </Stack.Navigator>
+          </PersistGate>
         </Provider>
       </NavigationContainer>
     </>

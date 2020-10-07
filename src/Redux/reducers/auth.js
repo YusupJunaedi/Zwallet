@@ -127,9 +127,10 @@ const auth = (state = initialState, {type, payload}) => {
         isPending: false,
       };
     case actionType.updateImg + '_FULFILLED':
-      console.log(payload);
+      const newImg = {...state.data, image: payload.data.data};
       return {
         ...state,
+        data: newImg,
       };
 
     case actionType.addHistory + '_PENDING':
@@ -155,6 +156,12 @@ const auth = (state = initialState, {type, payload}) => {
           ...state,
         };
       }
+    case actionType.changePin:
+      const newData = {...state.data, pin: payload};
+      return {
+        ...state,
+        data: newData,
+      };
     default:
       return state;
   }

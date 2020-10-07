@@ -14,13 +14,6 @@ import transfer from '../Redux/reducers/transfer';
 
 import * as color from '../styles/colorStyles';
 
-const data = {
-  name: 'Arya Stark',
-  phone: '+62 813-8492-9994',
-  image:
-    'https://vignette.wikia.nocookie.net/gameofthrones/images/b/be/AryaShipIronThrone.PNG/revision/latest/top-crop/width/360/height/360?cb=20190520174300',
-};
-
 const TransferDetail = ({navigation}) => {
   const ceklist = true;
 

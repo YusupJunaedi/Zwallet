@@ -17,7 +17,8 @@ import {
 } from '../../Redux/actions/actionContact';
 import {addDataTransferCreator} from '../../Redux/actions/actionTransfer';
 
-const Contact = ({navigation}) => {
+const Contact = ({navigation, search}) => {
+  console.log(search.length);
   const dispatch = useDispatch();
   const contact = useSelector((state) => state.contact.data);
   const quickContact = useSelector((state) => state.contact.quick);
@@ -66,7 +67,7 @@ const Contact = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      {quickContact.length ? (
+      {search.length !== 0 ? null : quickContact.length ? (
         <>
           <View style={{padding: 15}}>
             <Text style={{fontSize: 18, color: '#514F5B', fontWeight: 'bold'}}>
@@ -89,7 +90,6 @@ const Contact = ({navigation}) => {
                     }}>
                     {item.name.substring(0, 10)}
                   </Text>
-                  <Text style={{fontSize: 13, color: '#7A7886'}}>-9994</Text>
                 </View>
               );
             })}

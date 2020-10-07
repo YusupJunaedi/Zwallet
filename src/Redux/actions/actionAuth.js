@@ -34,3 +34,10 @@ export const updatePinCreator = (pin, id_user) => {
     payload: updatePin(pin, id_user),
   };
 };
+
+export const changePinCreator = (pin) => {
+  return {
+    type: actionType.changePin,
+    payload: pin,
+  };
+};
