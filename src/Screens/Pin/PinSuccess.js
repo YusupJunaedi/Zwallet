@@ -15,7 +15,6 @@ const PinSuccess = ({navigation}) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(logoutCreator());
     navigation.navigate('Login');
   };
 

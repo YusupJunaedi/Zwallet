@@ -17,6 +17,7 @@ const initialState = {
   isPending: false,
   isFulfilled: false,
   isRejected: false,
+  emailOTP: '',
 };
 
 const auth = (state = initialState, {type, payload}) => {
@@ -91,6 +92,7 @@ const auth = (state = initialState, {type, payload}) => {
         isPending: false,
         isFulfilled: false,
         isRejected: false,
+        emailOTP: '',
       };
     case actionType.updatePin + '_PENDING':
       return {
@@ -161,6 +163,11 @@ const auth = (state = initialState, {type, payload}) => {
       return {
         ...state,
         data: newData,
+      };
+    case actionType.emailOTP:
+      return {
+        ...state,
+        emailOTP: payload,
       };
     default:
       return state;

@@ -109,6 +109,7 @@ const Register = ({navigation}) => {
                 </View>
                 <View style={style.inputPassword}>
                   <TextInput
+                    secureTextEntry={true}
                     style={style.TextInput}
                     placeholder="Enter your password"
                     onChangeText={props.handleChange('password')}

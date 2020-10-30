@@ -23,6 +23,9 @@ import AllHistory from './src/Screens/AllHistory';
 import ChangePin from './src/Screens/Pin/ChangePin';
 import ChangePassword from './src/Screens/ChangePassword';
 import Confirmation from './src/Screens/Confirmation';
+import ResetPassword1 from './src/Screens/ResetPassword1';
+import OtpConfirmation from './src/Screens/OtpConfirmation';
+import ResetPasswordFilled from './src/Screens/ResetPasswordFilled';
 
 const Stack = createStackNavigator();
 
@@ -35,6 +38,15 @@ const App = () => {
           <PersistGate loading={null} persistor={persistor}>
             <Stack.Navigator headerMode="none">
               <Stack.Screen name="Splash" component={splashScreen} />
+              <Stack.Screen name="ResetPassword1" component={ResetPassword1} />
+              <Stack.Screen
+                name="ResetPasswordFilled"
+                component={ResetPasswordFilled}
+              />
+              <Stack.Screen
+                name="OtpConfirmation"
+                component={OtpConfirmation}
+              />
               <Stack.Screen name="Confirmation" component={Confirmation} />
               <Stack.Screen name="ChangePin" component={ChangePin} />
               <Stack.Screen name="ChangePassword" component={ChangePassword} />

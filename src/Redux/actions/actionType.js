@@ -13,6 +13,7 @@ const actionType = {
   getQuickContact: 'GET_QUICK_CONTACT',
   updateImg: 'UPDATE_IMAGE',
   changePin: 'CHANGE_PIN',
+  emailOTP: 'EMAIL_OTP',
 };
 
 export default actionType;

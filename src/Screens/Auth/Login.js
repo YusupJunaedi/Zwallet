@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIon from 'react-native-vector-icons/Ionicons';
@@ -149,14 +150,16 @@ const Login = ({navigation}) => {
           </View>
         </View>
         <View style={{alignItems: 'flex-end', marginRight: 25, marginTop: 20}}>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: 'bold',
-              color: 'rgba(58, 61, 66, 0.8)',
-            }}>
-            Forgot password?
-          </Text>
+          <Pressable onPress={() => navigation.navigate('ResetPassword1')}>
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: 'bold',
+                color: 'rgba(58, 61, 66, 0.8)',
+              }}>
+              Forgot password?
+            </Text>
+          </Pressable>
         </View>
         <View style={{alignItems: 'center', marginTop: 20}}>
           {msgInvalid !== '' ? (

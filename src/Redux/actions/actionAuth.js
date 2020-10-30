@@ -1,6 +1,13 @@
 import {authLogin, authRegister, updatePin, updateImg} from '../../utils/http';
 import actionType from './actionType';
 
+export const addEmailOTP = (email) => {
+  return {
+    type: actionType.emailOTP,
+    payload: email,
+  };
+};
+
 export const updateImgCreator = (id, resource) => {
   return {
     type: actionType.updateImg,
