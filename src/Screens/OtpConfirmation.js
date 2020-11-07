@@ -58,7 +58,7 @@ const OtpConfirmation = ({navigation}) => {
             paddingHorizontal: 10,
           }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('ResetPassword')}>
+            onPress={() => navigation.navigate('ResetPassword1')}>
             <Icon name="arrow-left" size={30} color="#4D4B57" />
           </TouchableOpacity>
           <Text
