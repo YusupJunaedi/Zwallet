@@ -4,7 +4,7 @@ const initialState = {
   data: {
     amount: 100000,
     id_user: 1,
-    image: 'http://192.168.43.116:8000/images/user.png',
+    image: 'http://34.205.65.98:8000/images/user.png',
     name: 'Yusup Junaedi',
     no_hp: '085795070707',
     pin: 123456,
@@ -79,7 +79,7 @@ const auth = (state = initialState, {type, payload}) => {
         data: {
           amount: 100000,
           id_user: 1,
-          image: 'http://192.168.43.116:8000/images/user.png',
+          image: 'http://34.205.65.98:8000/images/user.png',
           name: 'Yusup Junaedi',
           no_hp: '085795070707',
           pin: 123456,

@@ -28,12 +28,12 @@ const ChangePassword = ({navigation}) => {
 
   const handleSubmit = () => {
     setForm({...form, wrongPassword: ''});
-    const API = 'http://192.168.43.116:8000/auth/checkPassword';
+    const API = 'http://34.205.65.98:8000/auth/checkPassword';
     Axios.post(API, {email: email, password: form.currentPassword})
       .then((data) => {
         const passwordUser = data.data.data.passwordUser;
         const ApiUpdatePassword =
-          'http://192.168.43.116:8000/auth/changePassword';
+          'http://34.205.65.98:8000/auth/changePassword';
         Axios.patch(ApiUpdatePassword, {
           email: email,
           password: form.newPassword,

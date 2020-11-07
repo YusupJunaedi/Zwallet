@@ -33,7 +33,7 @@ const ChangePassword = ({navigation}) => {
     );
 
   const handleSubmit = () => {
-    const API = 'http://192.168.43.116:8000/auth/setpin';
+    const API = 'http://34.205.65.98:8000/auth/setpin';
     Axios.patch(API, {
       pin: pin,
       id_user: idUser,

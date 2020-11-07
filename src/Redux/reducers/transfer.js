@@ -3,7 +3,7 @@ import actionType from '../actions/actionType';
 const initialState = {
   id_contact: '',
   name: 'JAka Sembung',
-  image: 'http://192.168.43.116:8000/images/user.png',
+  image: 'http://34.205.65.98:8000/images/user.png',
   no_hp: '8787887878',
   amount: '20000',
   note: 'Beli UC FF',

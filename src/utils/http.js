@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const linkApi = `http://192.168.43.116:8000/`;
+const linkApi = `http://34.205.65.98:8000/`;
 
 export const updateImg = (id, sourceImg) => {
   let formData = new FormData();

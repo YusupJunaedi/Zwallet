@@ -22,7 +22,7 @@ const ResetPassword1 = ({navigation}) => {
     );
 
   const handleSubmit = () => {
-    const API = 'http://192.168.43.116:8000/auth/sendEmail';
+    const API = 'http://34.205.65.98:8000/auth/sendEmail';
     Axios.post(API, {
       email: email,
     })

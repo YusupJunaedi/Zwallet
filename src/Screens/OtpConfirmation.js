@@ -32,7 +32,7 @@ const OtpConfirmation = ({navigation}) => {
     );
 
   const handleSubmit = () => {
-    const API = 'http://192.168.43.116:8000/auth/checkOTP';
+    const API = 'http://34.205.65.98:8000/auth/checkOTP';
     Axios.post(API, {
       email: email,
     })

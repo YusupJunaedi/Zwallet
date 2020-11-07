@@ -53,7 +53,7 @@ const ResetPasswordFilled = ({navigation}) => {
       setMsg2('Password is not mathed');
     } else {
       const ApiUpdatePassword =
-        'http://192.168.43.116:8000/auth/changePassword';
+        'http://34.205.65.98:8000/auth/changePassword';
       Axios.patch(ApiUpdatePassword, {
         email: email,
         password: pass1,
